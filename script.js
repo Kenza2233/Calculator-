@@ -20,16 +20,13 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function display(val) {
-    document.getElementById('result').value += val;
-}
-
-function calculate() {
-    let x = document.getElementById('result').value;
-    try {
-        let y = eval(x);
-        document.getElementById('result').value = y;
-    } catch (e) {
-        document.getElementById('result').value = 'Error';
+    // Replace constants immediately for better user experience
+    if (val === 'PI') {
+        document.getElementById('result').value += Math.PI;
+    } else if (val === 'E') {
+        document.getElementById('result').value += Math.E;
+    } else {
+        document.getElementById('result').value += val;
     }
 }
 
@@ -41,6 +38,61 @@ function del() {
     let x = document.getElementById('result').value;
     document.getElementById('result').value = x.slice(0, -1);
 }
+
+function factorial(n) {
+    if (n < 0) return NaN; // Factorial is not defined for negative numbers
+    if (n === 0 || n === 1) return 1;
+    let result = 1;
+    for (let i = 2; i <= n; i++) {
+        result *= i;
+    }
+    return result;
+}
+
+function calculate() {
+    let expression = document.getElementById('result').value;
+
+    try {
+        // --- Pre-processing the expression ---
+
+        // Replace user-friendly symbols and functions with Math object equivalents
+        let processedExpr = expression
+            .replace(/sin/g, 'Math.sin')
+            .replace(/cos/g, 'Math.cos')
+            .replace(/tan/g, 'Math.tan')
+            .replace(/log/g, 'Math.log10')
+            .replace(/ln/g, 'Math.log')
+            .replace(/sqrt/g, 'Math.sqrt')
+            .replace(/\^/g, '**')
+            .replace(/PI/g, 'Math.PI')
+            .replace(/E/g, 'Math.E');
+
+        // Handle factorial (e.g., "5!")
+        processedExpr = processedExpr.replace(/(\d+)!/g, (match, number) => {
+            return `factorial(${number})`;
+        });
+
+        // Handle percentage (e.g., "10%") -> becomes (10/100)
+        processedExpr = processedExpr.replace(/(\d+(\.\d+)?)%/g, (match, number) => {
+            return `(${number}/100)`;
+        });
+
+        // --- Safer evaluation using Function constructor ---
+        // The 'factorial' function must be available in the scope
+        const calculateFunction = new Function('factorial', `return ${processedExpr}`);
+        const result = calculateFunction(factorial);
+
+        if (isNaN(result) || !isFinite(result)) {
+            document.getElementById('result').value = 'Error';
+        } else {
+            document.getElementById('result').value = result;
+        }
+
+    } catch (e) {
+        document.getElementById('result').value = 'Error';
+    }
+}
+
 
 function calculateStreak() {
     const currentStreakInput = document.getElementById('currentStreak');

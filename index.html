@@ -18,26 +18,45 @@
                 <div class="display">
                     <input type="text" id="result" disabled>
                 </div>
-                <div class="buttons">
+                <div class="buttons scientific">
+                    <!-- Row 1 -->
+                    <button onclick="display('sin(')" class="sc-op">sin</button>
+                    <button onclick="display('cos(')" class="sc-op">cos</button>
+                    <button onclick="display('tan(')" class="sc-op">tan</button>
+                    <button onclick="display('(')" class="operator">(</button>
+                    <button onclick="display(')')" class="operator">)</button>
+                    <!-- Row 2 -->
+                    <button onclick="display('log(')" class="sc-op">log</button>
+                    <button onclick="display('ln(')" class="sc-op">ln</button>
+                    <button onclick="display('^')" class="operator">x^y</button>
+                    <button onclick="display('sqrt(')" class="operator">√</button>
+                    <button onclick="display('!')" class="operator">n!</button>
+                    <!-- Row 3 -->
+                    <button onclick="display('PI')" class="sc-op">π</button>
+                    <button onclick="display('E')" class="sc-op">e</button>
                     <button onclick="clearScreen()" class="operator">C</button>
-                    <button onclick="display('%')" class="operator">%</button>
                     <button onclick="del()" class="operator">DEL</button>
                     <button onclick="display('/')" class="operator">/</button>
+                    <!-- Row 4 -->
                     <button onclick="display('7')">7</button>
                     <button onclick="display('8')">8</button>
                     <button onclick="display('9')">9</button>
+                    <button onclick="display('%')" class="operator">%</button>
                     <button onclick="display('*')" class="operator">*</button>
+                    <!-- Row 5 -->
                     <button onclick="display('4')">4</button>
                     <button onclick="display('5')">5</button>
                     <button onclick="display('6')">6</button>
-                    <button onclick="display('-')" class="operator">-</button>
                     <button onclick="display('1')">1</button>
+                    <button onclick="display('-')" class="operator">-</button>
+                    <!-- Row 6 -->
                     <button onclick="display('2')">2</button>
                     <button onclick="display('3')">3</button>
-                    <button onclick="display('+')" class="operator">+</button>
-                    <button onclick="display('0')">0</button>
                     <button onclick="display('.')">.</button>
-                    <button onclick="calculate()" class="operator equal">=</button>
+                    <button onclick="display('0')">0</button>
+                    <button onclick="display('+')" class="operator">+</button>
+                    <!-- Row 7 -->
+                    <button onclick="calculate()" class="operator equal" style="grid-column: span 5;">=</button>
                 </div>
             </div>
         </div>

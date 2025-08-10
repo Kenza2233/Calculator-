@@ -56,7 +56,7 @@ main {
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     overflow: hidden;
-    width: 320px;
+    width: 400px; /* Increased width for scientific layout */
     margin-bottom: 20px; /* Add space between calculators */
 }
 
@@ -83,11 +83,15 @@ main {
     grid-template-columns: repeat(4, 1fr);
 }
 
+.buttons.scientific {
+    grid-template-columns: repeat(5, 1fr);
+}
+
 button {
     border: 1px solid #ccc;
     background-color: #fff;
-    font-size: 24px;
-    padding: 20px;
+    font-size: 18px; /* Adjusted for more buttons */
+    padding: 15px; /* Adjusted for more buttons */
     cursor: pointer;
     transition: background-color 0.2s;
 }
@@ -125,6 +129,19 @@ button:active {
 
 .equal:active {
     background-color: #388e3c;
+}
+
+.sc-op {
+    background-color: #6c757d;
+    color: white;
+}
+
+.sc-op:hover {
+    background-color: #5a6268;
+}
+
+.sc-op:active {
+    background-color: #545b62;
 }
 
 /* Streak Calculator Styles */
