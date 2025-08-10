@@ -3,24 +3,41 @@ document.addEventListener('DOMContentLoaded', function () {
     const navStreak = document.getElementById('nav-streak');
     const calculatorSection = document.getElementById('calculator-section');
     const streakSection = document.getElementById('streak-calculator-section');
+    const navSlider = document.querySelector('.nav-slider');
+
+    function updateNavSlider() {
+        const activeButton = document.querySelector('.main-nav button.active');
+        if (activeButton) {
+            navSlider.style.width = `${activeButton.offsetWidth}px`;
+            navSlider.style.left = `${activeButton.offsetLeft}px`;
+        }
+    }
 
     navCalculator.addEventListener('click', () => {
-        calculatorSection.classList.remove('hidden');
-        streakSection.classList.add('hidden');
+        calculatorSection.classList.remove('is-hidden');
+        streakSection.classList.add('is-hidden');
         navCalculator.classList.add('active');
         navStreak.classList.remove('active');
+        updateNavSlider();
     });
 
     navStreak.addEventListener('click', () => {
-        streakSection.classList.remove('hidden');
-        calculatorSection.classList.add('hidden');
+        streakSection.classList.remove('is-hidden');
+        calculatorSection.classList.add('is-hidden');
         navStreak.classList.add('active');
         navCalculator.classList.remove('active');
+        updateNavSlider();
     });
+
+    // Initial setup
+    updateNavSlider();
+    // Ensure the non-active section is properly hidden on load
+    if (!streakSection.classList.contains('active')) {
+        streakSection.classList.add('is-hidden');
+    }
 });
 
 function display(val) {
-    // Replace constants immediately for better user experience
     if (val === 'PI') {
         document.getElementById('result').value += Math.PI;
     } else if (val === 'E') {
@@ -40,7 +57,7 @@ function del() {
 }
 
 function factorial(n) {
-    if (n < 0) return NaN; // Factorial is not defined for negative numbers
+    if (n < 0) return NaN;
     if (n === 0 || n === 1) return 1;
     let result = 1;
     for (let i = 2; i <= n; i++) {
@@ -53,9 +70,6 @@ function calculate() {
     let expression = document.getElementById('result').value;
 
     try {
-        // --- Pre-processing the expression ---
-
-        // Replace user-friendly symbols and functions with Math object equivalents
         let processedExpr = expression
             .replace(/sin/g, 'Math.sin')
             .replace(/cos/g, 'Math.cos')
@@ -67,18 +81,9 @@ function calculate() {
             .replace(/PI/g, 'Math.PI')
             .replace(/E/g, 'Math.E');
 
-        // Handle factorial (e.g., "5!")
-        processedExpr = processedExpr.replace(/(\d+)!/g, (match, number) => {
-            return `factorial(${number})`;
-        });
+        processedExpr = processedExpr.replace(/(\d+)!/g, (match, number) => `factorial(${number})`);
+        processedExpr = processedExpr.replace(/(\d+(\.\d+)?)%/g, (match, number) => `(${number}/100)`);
 
-        // Handle percentage (e.g., "10%") -> becomes (10/100)
-        processedExpr = processedExpr.replace(/(\d+(\.\d+)?)%/g, (match, number) => {
-            return `(${number}/100)`;
-        });
-
-        // --- Safer evaluation using Function constructor ---
-        // The 'factorial' function must be available in the scope
         const calculateFunction = new Function('factorial', `return ${processedExpr}`);
         const result = calculateFunction(factorial);
 
@@ -92,7 +97,6 @@ function calculate() {
         document.getElementById('result').value = 'Error';
     }
 }
-
 
 function calculateStreak() {
     const currentStreakInput = document.getElementById('currentStreak');

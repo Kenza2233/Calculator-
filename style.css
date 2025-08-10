@@ -1,7 +1,7 @@
 body {
     display: flex;
-    flex-direction: column; /* Stack items vertically */
-    justify-content: flex-start; /* Align items to the top */
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
     min-height: 100vh;
     background-color: #f0f0f0;
@@ -12,6 +12,7 @@ body {
 }
 
 .main-nav {
+    position: relative;
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
@@ -19,12 +20,22 @@ body {
     padding: 10px;
     border-radius: 10px;
     width: 100%;
-    max-width: 660px; /* Adjust as needed */
+    max-width: 360px;
     box-sizing: border-box;
 }
 
+.nav-slider {
+    position: absolute;
+    top: 5px;
+    height: calc(100% - 10px);
+    background-color: #4caf50;
+    border-radius: 5px;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    z-index: 1;
+}
+
 .main-nav button {
-    background-color: #555;
+    background-color: transparent; /* Changed */
     color: white;
     border: none;
     padding: 10px 20px;
@@ -32,16 +43,18 @@ body {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    transition: background-color 0.3s;
+    transition: color 0.3s;
+    z-index: 2; /* Ensure buttons are on top of slider */
+    position: relative;
 }
 
 .main-nav button:hover {
-    background-color: #777;
+    color: #ddd;
 }
 
 .main-nav button.active {
-    background-color: #4caf50;
     font-weight: bold;
+    color: white; /* Ensure active text is clearly visible */
 }
 
 main {
@@ -49,6 +62,18 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative; /* Needed for positioning children */
+}
+
+#calculator-section, #streak-calculator-section {
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.is-hidden {
+    opacity: 0;
+    transform: translateY(-20px);
+    pointer-events: none;
+    position: absolute; /* Take out of flow to prevent empty space */
 }
 
 .calculator {
@@ -56,8 +81,8 @@ main {
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     overflow: hidden;
-    width: 400px; /* Increased width for scientific layout */
-    margin-bottom: 20px; /* Add space between calculators */
+    width: 360px; /* Reduced width */
+    margin-bottom: 20px;
 }
 
 .display {
@@ -72,7 +97,7 @@ main {
     border: none;
     background-color: #222;
     color: white;
-    font-size: 48px;
+    font-size: 40px; /* Reduced font size */
     text-align: right;
     padding: 0;
     box-sizing: border-box;
@@ -90,8 +115,8 @@ main {
 button {
     border: 1px solid #ccc;
     background-color: #fff;
-    font-size: 18px; /* Adjusted for more buttons */
-    padding: 15px; /* Adjusted for more buttons */
+    font-size: 16px; /* Adjusted */
+    padding: 12px; /* Adjusted */
     cursor: pointer;
     transition: background-color 0.2s;
 }
@@ -118,7 +143,6 @@ button:active {
 }
 
 .equal {
-    grid-column: span 2;
     background-color: #4caf50;
     color: white;
 }
@@ -209,6 +233,7 @@ button:active {
     border-radius: 5px;
 }
 
+/* Cleanup old .hidden class */
 .hidden {
     display: none;
 }
