@@ -52,7 +52,9 @@ body {
     color: #ddd;
 }
 
-.main-nav button:active {
+.main-nav button:focus, .main-nav button:active {
+    outline: none;
+    -webkit-tap-highlight-color: transparent; /* For mobile browsers */
     background-color: transparent !important; /* Override generic button active state */
 }
 
