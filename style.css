@@ -167,11 +167,6 @@ button:active {
 .equal {
     background-color: #4caf50;
     color: white;
-    grid-column: span 2; /* Spans 2 columns */
-}
-
-.zero {
-    grid-column: span 2; /* Spans 2 columns */
 }
 
 .equal:hover {
