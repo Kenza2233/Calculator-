@@ -35,7 +35,7 @@ body {
 }
 
 .main-nav button {
-    background-color: transparent; /* Changed */
+    background-color: transparent;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -44,7 +44,7 @@ body {
     cursor: pointer;
     font-size: 16px;
     transition: color 0.3s;
-    z-index: 2; /* Ensure buttons are on top of slider */
+    z-index: 2;
     position: relative;
 }
 
@@ -54,7 +54,7 @@ body {
 
 .main-nav button.active {
     font-weight: bold;
-    color: white; /* Ensure active text is clearly visible */
+    color: white;
 }
 
 main {
@@ -62,7 +62,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative; /* Needed for positioning children */
+    position: relative;
 }
 
 #calculator-section, #streak-calculator-section {
@@ -73,7 +73,7 @@ main {
     opacity: 0;
     transform: translateY(-20px);
     pointer-events: none;
-    position: absolute; /* Take out of flow to prevent empty space */
+    position: absolute;
 }
 
 .calculator {
@@ -81,8 +81,13 @@ main {
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     overflow: hidden;
-    width: 360px; /* Reduced width */
+    width: 320px; /* Further reduced width for standard view */
     margin-bottom: 20px;
+    transition: width 0.4s ease-in-out;
+}
+
+.calculator.scientific-mode-active {
+    width: 360px; /* Expand for scientific view */
 }
 
 .display {
@@ -97,7 +102,7 @@ main {
     border: none;
     background-color: #222;
     color: white;
-    font-size: 40px; /* Reduced font size */
+    font-size: 40px;
     text-align: right;
     padding: 0;
     box-sizing: border-box;
@@ -106,19 +111,30 @@ main {
 .buttons {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    transition: all 0.4s ease-in-out;
 }
 
-.buttons.scientific {
-    grid-template-columns: repeat(5, 1fr);
+.calculator.scientific-mode-active .buttons {
+    grid-template-columns: repeat(4, 1fr); /* Still 4 columns */
 }
+
+.sci-button {
+    display: none; /* Hidden by default */
+}
+
+.calculator.scientific-mode-active .sci-button {
+    display: block; /* Shown in scientific mode */
+}
+
 
 button {
     border: 1px solid #ccc;
     background-color: #fff;
-    font-size: 16px; /* Adjusted */
-    padding: 12px; /* Adjusted */
+    font-size: 16px;
+    padding: 15px; /* Unified padding */
     cursor: pointer;
     transition: background-color 0.2s;
+    min-width: 0; /* Fix for grid layout */
 }
 
 button:hover {
@@ -145,6 +161,11 @@ button:active {
 .equal {
     background-color: #4caf50;
     color: white;
+    grid-column: span 2; /* Spans 2 columns */
+}
+
+.zero {
+    grid-column: span 2; /* Spans 2 columns */
 }
 
 .equal:hover {
@@ -233,7 +254,6 @@ button:active {
     border-radius: 5px;
 }
 
-/* Cleanup old .hidden class */
 .hidden {
     display: none;
 }

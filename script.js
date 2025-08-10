@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // --- Main Navigation ---
     const navCalculator = document.getElementById('nav-calculator');
     const navStreak = document.getElementById('nav-streak');
     const calculatorSection = document.getElementById('calculator-section');
@@ -29,9 +30,17 @@ document.addEventListener('DOMContentLoaded', function () {
         updateNavSlider();
     });
 
-    // Initial setup
+    // --- Scientific Mode Toggle ---
+    const sciToggleButton = document.getElementById('sci-toggle');
+    const calculatorElement = document.querySelector('.calculator');
+
+    sciToggleButton.addEventListener('click', () => {
+        calculatorElement.classList.toggle('scientific-mode-active');
+    });
+
+
+    // --- Initial Setup ---
     updateNavSlider();
-    // Ensure the non-active section is properly hidden on load
     if (!streakSection.classList.contains('active')) {
         streakSection.classList.add('is-hidden');
     }
