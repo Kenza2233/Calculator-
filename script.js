@@ -1,3 +1,24 @@
+document.addEventListener('DOMContentLoaded', function () {
+    const navCalculator = document.getElementById('nav-calculator');
+    const navStreak = document.getElementById('nav-streak');
+    const calculatorSection = document.getElementById('calculator-section');
+    const streakSection = document.getElementById('streak-calculator-section');
+
+    navCalculator.addEventListener('click', () => {
+        calculatorSection.classList.remove('hidden');
+        streakSection.classList.add('hidden');
+        navCalculator.classList.add('active');
+        navStreak.classList.remove('active');
+    });
+
+    navStreak.addEventListener('click', () => {
+        streakSection.classList.remove('hidden');
+        calculatorSection.classList.add('hidden');
+        navStreak.classList.add('active');
+        navCalculator.classList.remove('active');
+    });
+});
+
 function display(val) {
     document.getElementById('result').value += val;
 }

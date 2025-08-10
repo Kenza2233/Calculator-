@@ -7,41 +7,54 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="calculator">
-        <div class="display">
-            <input type="text" id="result" disabled>
+    <nav class="main-nav">
+        <button id="nav-calculator" class="active">Kalkulator</button>
+        <button id="nav-streak">Kalkulator Streak</button>
+    </nav>
+
+    <main>
+        <div id="calculator-section">
+            <div class="calculator">
+                <div class="display">
+                    <input type="text" id="result" disabled>
+                </div>
+                <div class="buttons">
+                    <button onclick="clearScreen()" class="operator">C</button>
+                    <button onclick="display('%')" class="operator">%</button>
+                    <button onclick="del()" class="operator">DEL</button>
+                    <button onclick="display('/')" class="operator">/</button>
+                    <button onclick="display('7')">7</button>
+                    <button onclick="display('8')">8</button>
+                    <button onclick="display('9')">9</button>
+                    <button onclick="display('*')" class="operator">*</button>
+                    <button onclick="display('4')">4</button>
+                    <button onclick="display('5')">5</button>
+                    <button onclick="display('6')">6</button>
+                    <button onclick="display('-')" class="operator">-</button>
+                    <button onclick="display('1')">1</button>
+                    <button onclick="display('2')">2</button>
+                    <button onclick="display('3')">3</button>
+                    <button onclick="display('+')" class="operator">+</button>
+                    <button onclick="display('0')">0</button>
+                    <button onclick="display('.')">.</button>
+                    <button onclick="calculate()" class="operator equal">=</button>
+                </div>
+            </div>
         </div>
-        <div class="buttons">
-            <button onclick="clearScreen()" class="operator">C</button>
-            <button onclick="display('%')" class="operator">%</button>
-            <button onclick="del()" class="operator">DEL</button>
-            <button onclick="display('/')" class="operator">/</button>
-            <button onclick="display('7')">7</button>
-            <button onclick="display('8')">8</button>
-            <button onclick="display('9')">9</button>
-            <button onclick="display('*')" class="operator">*</button>
-            <button onclick="display('4')">4</button>
-            <button onclick="display('5')">5</button>
-            <button onclick="display('6')">6</button>
-            <button onclick="display('-')" class="operator">-</button>
-            <button onclick="display('1')">1</button>
-            <button onclick="display('2')">2</button>
-            <button onclick="display('3')">3</button>
-            <button onclick="display('+')" class="operator">+</button>
-            <button onclick="display('0')">0</button>
-            <button onclick="display('.')">.</button>
-            <button onclick="calculate()" class="operator equal">=</button>
+
+        <div id="streak-calculator-section" class="hidden">
+            <div class="streak-calculator">
+                <h2>Kalkulator Streak</h2>
+                <div class="streak-input">
+                    <label for="currentStreak">Streak Anda Saat Ini:</label>
+                    <input type="number" id="currentStreak" placeholder="Contoh: 50">
+                    <button onclick="calculateStreak()">Kira</button>
+                </div>
+                <div id="streakResults"></div>
+            </div>
         </div>
-    </div>
-    <div class="streak-calculator">
-        <h2>Kalkulator Streak</h2>
-        <div class="streak-input">
-            <label for="currentStreak">Streak Anda Saat Ini:</label>
-            <input type="number" id="currentStreak" placeholder="Contoh: 50">
-            <button onclick="calculateStreak()">Kira</button>
-        </div>
-        <div id="streakResults"></div>
-    </div>
+    </main>
+
     <script src="script.js"></script>
 </body>
 </html>
