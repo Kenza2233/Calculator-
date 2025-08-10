@@ -52,6 +52,10 @@ body {
     color: #ddd;
 }
 
+.main-nav button:active {
+    background-color: transparent !important; /* Override generic button active state */
+}
+
 .main-nav button.active {
     font-weight: bold;
     color: white;
