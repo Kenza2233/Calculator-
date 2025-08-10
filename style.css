@@ -1,10 +1,13 @@
 body {
     display: flex;
+    flex-direction: column; /* Stack items vertically */
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     background-color: #f0f0f0;
     margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
     font-family: 'Arial', sans-serif;
 }
 
@@ -14,6 +17,7 @@ body {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     overflow: hidden;
     width: 320px;
+    margin-bottom: 20px; /* Add space between calculators */
 }
 
 .display {
@@ -81,4 +85,69 @@ button:active {
 
 .equal:active {
     background-color: #388e3c;
+}
+
+/* Streak Calculator Styles */
+.streak-calculator {
+    width: 320px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    background-color: #fff;
+    text-align: center;
+}
+
+.streak-calculator h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+.streak-input {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.streak-input label {
+    font-size: 16px;
+    color: #555;
+}
+
+.streak-input input {
+    width: 80%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.streak-input button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.streak-input button:hover {
+    background-color: #66bb6a;
+}
+
+#streakResults {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #333;
+}
+
+#streakResults p {
+    margin: 5px 0;
+    padding: 8px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
 }

@@ -20,3 +20,36 @@ function del() {
     let x = document.getElementById('result').value;
     document.getElementById('result').value = x.slice(0, -1);
 }
+
+function calculateStreak() {
+    const currentStreakInput = document.getElementById('currentStreak');
+    const resultsDiv = document.getElementById('streakResults');
+
+    const currentStreak = parseInt(currentStreakInput.value);
+
+    if (isNaN(currentStreak) || currentStreak < 0) {
+        resultsDiv.innerHTML = '<p>Sila masukkan nombor streak yang sah.</p>';
+        return;
+    }
+
+    const milestones = [100, 200, 300, 400, 500];
+    const today = new Date();
+    let resultsHTML = '';
+
+    milestones.forEach(milestone => {
+        if (currentStreak >= milestone) {
+            resultsHTML += `<p>Anda telah melepasi ${milestone} hari streak!</p>`;
+        } else {
+            const daysNeeded = milestone - currentStreak;
+            const futureDate = new Date(today);
+            futureDate.setDate(today.getDate() + daysNeeded);
+
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const formattedDate = futureDate.toLocaleDateString('ms-MY', options);
+
+            resultsHTML += `<p>Anda akan capai <strong>${milestone}</strong> hari streak pada: <strong>${formattedDate}</strong> (${daysNeeded} hari lagi)</p>`;
+        }
+    });
+
+    resultsDiv.innerHTML = resultsHTML;
+}
