@@ -4,11 +4,12 @@ body {
     justify-content: flex-start;
     align-items: center;
     min-height: 100vh;
-    background-color: #f0f0f0;
+    background: #f0f0f0; /* Use background instead of background-color for gradients */
     margin: 0;
     padding: 20px;
     box-sizing: border-box;
     font-family: 'Arial', sans-serif;
+    transition: background 0.5s ease-in-out;
 }
 
 .main-nav {
@@ -257,4 +258,55 @@ button:active {
 
 .hidden {
     display: none;
+}
+
+/* Theme Selector Styles */
+.theme-selector {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+}
+
+.theme-button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    padding: 0;
+    font-size: 0; /* Hide any text */
+}
+
+.theme-button:hover {
+    transform: scale(1.1);
+}
+
+/* Applying the specific gradients to each theme button */
+.theme-button[title="Sunset Glow"] {
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+}
+
+.theme-button[title="Ocean Breeze"] {
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+}
+
+.theme-button[title="Lavender Dream"] {
+    background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+}
+
+.theme-button[title="Emerald Wave"] {
+    background: linear-gradient(135deg, #00f260, #0575e6);
+}
+
+.theme-button[title="Golden Hour"] {
+    background: linear-gradient(135deg, #f7971e, #ffd200);
 }

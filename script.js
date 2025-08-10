@@ -39,6 +39,15 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
+    // --- Theme Selector ---
+    const themeSelector = document.querySelector('.theme-selector');
+    themeSelector.addEventListener('click', (e) => {
+        if (e.target.classList.contains('theme-button')) {
+            const gradient = e.target.dataset.gradient;
+            document.body.style.background = gradient;
+        }
+    });
+
     // --- Initial Setup ---
     updateNavSlider();
     if (!streakSection.classList.contains('active')) {
