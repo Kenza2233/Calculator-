@@ -123,7 +123,7 @@ function calculateStreak() {
     const currentStreak = parseInt(currentStreakInput.value);
 
     if (isNaN(currentStreak) || currentStreak < 0) {
-        resultsDiv.innerHTML = '<p>Sila masukkan nombor streak yang sah.</p>';
+        resultsDiv.innerHTML = '<p style="text-align: center;">Sila masukkan nombor streak yang sah.</p>';
         return;
     }
 
@@ -133,7 +133,14 @@ function calculateStreak() {
 
     milestones.forEach(milestone => {
         if (currentStreak >= milestone) {
-            resultsHTML += `<p>Anda telah melepasi ${milestone} hari streak!</p>`;
+            resultsHTML += `
+                <div class="streak-result-card achieved">
+                    <div class="milestone-number">${milestone}</div>
+                    <div class="milestone-details">
+                        <span class="date">Tahniah! Anda telah melepasi</span>
+                        <span class="days-remaining">${milestone} hari streak</span>
+                    </div>
+                </div>`;
         } else {
             const daysNeeded = milestone - currentStreak;
             const futureDate = new Date(today);
@@ -142,7 +149,14 @@ function calculateStreak() {
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             const formattedDate = futureDate.toLocaleDateString('ms-MY', options);
 
-            resultsHTML += `<p>Anda akan capai <strong>${milestone}</strong> hari streak pada: <strong>${formattedDate}</strong> (${daysNeeded} hari lagi)</p>`;
+            resultsHTML += `
+                <div class="streak-result-card">
+                    <div class="milestone-number">${milestone}</div>
+                    <div class="milestone-details">
+                        <span class="date">${formattedDate}</span>
+                        <span class="days-remaining">${daysNeeded} hari lagi</span>
+                    </div>
+                </div>`;
         }
     });
 

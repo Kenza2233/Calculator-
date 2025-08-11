@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
 body {
     display: flex;
     flex-direction: column;
@@ -8,7 +10,7 @@ body {
     margin: 0;
     padding: 20px;
     box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Poppins', sans-serif;
     transition: background 0.5s ease-in-out;
 }
 
@@ -245,15 +247,55 @@ button:active {
 
 #streakResults {
     margin-top: 20px;
-    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+.streak-result-card {
+    display: flex;
+    align-items: center;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.streak-result-card .milestone-number {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: #4caf50;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.streak-result-card .milestone-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.streak-result-card .milestone-details .date {
+    font-size: 1.1em;
+    font-weight: 600;
     color: #333;
 }
 
-#streakResults p {
-    margin: 5px 0;
-    padding: 8px;
-    background-color: #f0f0f0;
-    border-radius: 5px;
+.streak-result-card .milestone-details .days-remaining {
+    font-size: 0.9em;
+    color: #777;
+}
+
+.streak-result-card.achieved .milestone-number {
+    color: #aaa;
+}
+
+.streak-result-card.achieved .milestone-details {
+    color: #aaa;
+    text-decoration: line-through;
 }
 
 .hidden {
