@@ -23,7 +23,7 @@ body {
     padding: 10px;
     border-radius: 10px;
     width: 100%;
-    max-width: 360px;
+    max-width: 480px; /* Adjusted for new button */
     box-sizing: border-box;
 }
 
@@ -72,6 +72,7 @@ main {
     flex-direction: column;
     align-items: center;
     position: relative;
+    padding-bottom: 80px; /* Add space for fixed footer */
 }
 
 #calculator-section, #streak-calculator-section {
@@ -352,3 +353,127 @@ button:active {
 .theme-button[title="Golden Hour"] {
     background: linear-gradient(135deg, #f7971e, #ffd200);
 }
+
+/* Countdown Timer Styles */
+.page-container {
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    background-color: #fff;
+    text-align: center;
+}
+
+.countdown-container {
+    width: 100%;
+    text-align: center;
+}
+
+.countdown-container h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+.countdown-input {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.countdown-input input[type="datetime-local"] {
+    font-family: 'Poppins', sans-serif;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.countdown-input button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.countdown-input button:hover {
+    background-color: #0056b3;
+}
+
+#countdown-display {
+    display: flex;
+    justify-content: space-around;
+    background: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.countdown-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.countdown-item span {
+    font-size: 3em;
+    font-weight: 700;
+    color: #333;
+}
+
+.timer-container {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+#timer-display {
+    font-size: 4em;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.timer-inputs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.timer-inputs input {
+    width: 80px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+.timer-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.timer-controls button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    color: white;
+}
+
+#timer-start { background-color: #28a745; }
+#timer-start:hover { background-color: #218838; }
+
+#timer-pause { background-color: #ffc107; }
+#timer-pause:hover { background-color: #e0a800; }
+
+#timer-reset { background-color: #dc3545; }
+#timer-reset:hover { background-color: #c82333; }
