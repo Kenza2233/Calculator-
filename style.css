@@ -6,7 +6,7 @@ body {
     justify-content: flex-start;
     align-items: center;
     min-height: 100vh;
-    background: #f0f0f0;
+    background: #f0f0f0; /* Use background instead of background-color for gradients */
     margin: 0;
     padding: 20px;
     box-sizing: border-box;
@@ -20,17 +20,17 @@ body {
     justify-content: center;
     margin-bottom: 20px;
     background-color: #333;
-    padding: 8px; /* smaller */
+    padding: 10px;
     border-radius: 10px;
     width: 100%;
-    max-width: 400px; /* smaller */
+    max-width: 480px; /* Adjusted for new button */
     box-sizing: border-box;
 }
 
 .nav-slider {
     position: absolute;
-    top: 4px; /* adjusted */
-    height: calc(100% - 8px); /* adjusted */
+    top: 5px;
+    height: calc(100% - 10px);
     background-color: #4caf50;
     border-radius: 5px;
     transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
@@ -41,11 +41,11 @@ body {
     background-color: transparent;
     color: white;
     border: none;
-    padding: 8px 12px; /* smaller */
-    margin: 0 4px; /* smaller */
+    padding: 10px 15px; /* Adjusted padding */
+    margin: 0 5px;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 12px; /* smaller */
+    font-size: 14px; /* Reduced font size */
     transition: color 0.3s;
     z-index: 2;
     position: relative;
@@ -57,8 +57,8 @@ body {
 
 .main-nav button:focus, .main-nav button:active {
     outline: none;
-    -webkit-tap-highlight-color: transparent;
-    background-color: transparent !important;
+    -webkit-tap-highlight-color: transparent; /* For mobile browsers */
+    background-color: transparent !important; /* Override generic button active state */
 }
 
 .main-nav button.active {
@@ -72,10 +72,10 @@ main {
     flex-direction: column;
     align-items: center;
     position: relative;
-    padding-bottom: 70px; /* adjusted */
+    padding-bottom: 80px; /* Add space for fixed footer */
 }
 
-#calculator-section, #streak-calculator-section, #countdown-section {
+#calculator-section, #streak-calculator-section {
     transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
 
@@ -89,21 +89,21 @@ main {
 .calculator {
     border: 1px solid #ccc;
     border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* softer */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     overflow: hidden;
-    width: 280px; /* smaller */
+    width: 320px; /* Further reduced width for standard view */
     margin-bottom: 20px;
     transition: width 0.4s ease-in-out;
 }
 
 .calculator.scientific-mode-active {
-    width: 310px; /* smaller */
+    width: 360px; /* Expand for scientific view */
 }
 
 .display {
     background-color: #222;
     color: white;
-    padding: 15px; /* smaller */
+    padding: 20px;
     text-align: right;
 }
 
@@ -112,7 +112,7 @@ main {
     border: none;
     background-color: #222;
     color: white;
-    font-size: 36px; /* smaller */
+    font-size: 40px;
     text-align: right;
     padding: 0;
     box-sizing: border-box;
@@ -121,69 +121,359 @@ main {
 .buttons {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    transition: all 0.4s ease-in-out;
 }
 
-.sci-button { display: none; }
-.calculator.scientific-mode-active .sci-button { display: block; }
+.calculator.scientific-mode-active .buttons {
+    grid-template-columns: repeat(4, 1fr); /* Still 4 columns */
+}
+
+.sci-button {
+    display: none; /* Hidden by default */
+}
+
+.calculator.scientific-mode-active .sci-button {
+    display: block; /* Shown in scientific mode */
+}
+
 
 button {
-    border: 1px solid #eee; /* lighter */
+    border: 1px solid #ccc;
     background-color: #fff;
-    font-size: 14px; /* smaller */
-    padding: 12px; /* smaller */
+    font-size: 16px;
+    padding: 15px; /* Unified padding */
     cursor: pointer;
     transition: background-color 0.2s;
-    min-width: 0;
+    min-width: 0; /* Fix for grid layout */
 }
-/* ... other button styles ... */
-.operator { background-color: #f9a825; color: white; }
-.equal { background-color: #4caf50; color: white; }
-.sc-op { background-color: #6c757d; color: white; }
 
+button:hover {
+    background-color: #f0f0f0;
+}
+
+button:active {
+    background-color: #ddd;
+}
+
+.operator {
+    background-color: #f9a825;
+    color: white;
+}
+
+.operator:hover {
+    background-color: #fbc02d;
+}
+
+.operator:active {
+    background-color: #f57f17;
+}
+
+.equal {
+    background-color: #4caf50;
+    color: white;
+}
+
+.equal:hover {
+    background-color: #66bb6a;
+}
+
+.equal:active {
+    background-color: #388e3c;
+}
+
+.sc-op {
+    background-color: #6c757d;
+    color: white;
+}
+
+.sc-op:hover {
+    background-color: #5a6268;
+}
+
+.sc-op:active {
+    background-color: #545b62;
+}
 
 /* Streak Calculator Styles */
 .streak-calculator {
-    width: 280px; /* smaller */
-    padding: 15px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-    text-align: center;
-}
-
-/* Countdown Page Styles */
-.page-container {
-    width: 100%;
-    max-width: 400px; /* smaller */
+    width: 320px;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     background-color: #fff;
     text-align: center;
 }
 
+.streak-calculator h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+.streak-input {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.streak-input label {
+    font-size: 16px;
+    color: #555;
+}
+
+.streak-input input {
+    width: 80%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.streak-input button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.streak-input button:hover {
+    background-color: #66bb6a;
+}
+
+#streakResults {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+.streak-result-card {
+    display: flex;
+    align-items: center;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.streak-result-card .milestone-number {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: #4caf50;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.streak-result-card .milestone-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.streak-result-card .milestone-details .date {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #333;
+}
+
+.streak-result-card .milestone-details .days-remaining {
+    font-size: 0.9em;
+    color: #777;
+}
+
+.streak-result-card.achieved .milestone-number {
+    color: #aaa;
+}
+
+.streak-result-card.achieved .milestone-details {
+    color: #aaa;
+    text-decoration: line-through;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Theme Selector Styles */
+.theme-selector {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+}
+
+.theme-button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    padding: 0;
+    font-size: 0; /* Hide any text */
+}
+
+.theme-button:hover {
+    transform: scale(1.1);
+}
+
+/* Applying the specific gradients to each theme button */
+.theme-button[title="Sunset Glow"] {
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+}
+
+.theme-button[title="Ocean Breeze"] {
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+}
+
+.theme-button[title="Lavender Dream"] {
+    background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+}
+
+.theme-button[title="Emerald Wave"] {
+    background: linear-gradient(135deg, #00f260, #0575e6);
+}
+
+.theme-button[title="Golden Hour"] {
+    background: linear-gradient(135deg, #f7971e, #ffd200);
+}
+
+/* Countdown Timer Styles */
+.page-container {
+    width: 100%;
+    max-width: 480px; /* Aligned with nav bar */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    background-color: #fff;
+    text-align: center;
+}
+
+.countdown-container {
+    width: 100%;
+    text-align: center;
+}
+
+.countdown-container h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+.countdown-input {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.countdown-input input[type="datetime-local"] {
+    font-family: 'Poppins', sans-serif;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.countdown-input button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.countdown-input button:hover {
+    background-color: #0056b3;
+}
+
+#countdown-display {
+    display: flex;
+    justify-content: space-around;
+    background: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.countdown-item {
+    display: flex;
+    flex-direction: column;
+}
+
 .countdown-item span {
-    font-size: 2em; /* smaller */
+    font-size: 2.2em; /* Further reduced font size */
     font-weight: 700;
     color: #333;
 }
 
+.timer-container {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
 #timer-display {
-    font-size: 3.5em; /* smaller */
+    font-size: 4em;
     font-weight: 700;
     margin-bottom: 20px;
     color: #333;
 }
 
-/* other styles remain, just with size adjustments if needed */
-.streak-calculator h2, .countdown-container h2 { margin-top: 0; color: #333; }
-.streak-input, .countdown-input, .timer-inputs, .timer-controls { display: flex; justify-content: center; gap: 10px; margin-bottom: 15px; }
-.streak-input input, .countdown-input input, .timer-inputs input { font-size: 14px; padding: 8px; }
-#streakResults, .streak-result-card, .streak-result-card .milestone-details { /* styles remain */ }
-.theme-selector { /* styles remain */ }
-.timer-container { margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee; }
-.timer-controls button { font-size: 14px; }
-.hidden { display: none; }
-/* ... other specific button/element styles ... */
+.timer-inputs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.timer-inputs input {
+    width: 80px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+.timer-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.timer-controls button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    color: white;
+}
+
+#timer-start { background-color: #28a745; }
+#timer-start:hover { background-color: #218838; }
+
+#timer-pause { background-color: #ffc107; }
+#timer-pause:hover { background-color: #e0a800; }
+
+#timer-reset { background-color: #dc3545; }
+#timer-reset:hover { background-color: #c82333; }
