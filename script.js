@@ -160,23 +160,42 @@ function calculate() {
 
 // --- Streak Calculator Functions ---
 function calculateStreak() {
-    const currentStreakInput = document.getElementById('currentStreak');
+    const startDateInput = document.getElementById('streakStartDate');
     const resultsDiv = document.getElementById('streakResults');
-    const currentStreak = parseInt(currentStreakInput.value);
-    if (isNaN(currentStreak) || currentStreak < 0) {
-        resultsDiv.innerHTML = '<p style="text-align: center;">Sila masukkan nombor streak yang sah.</p>';
+    const startDateValue = startDateInput.value;
+
+    if (!startDateValue) {
+        resultsDiv.innerHTML = '<p style="text-align: center;">Sila pilih tarikh mula.</p>';
         return;
     }
-    const milestones = [100, 200, 300, 400, 500];
+
     const today = new Date();
-    let resultsHTML = '';
+    const parts = startDateValue.split('-');
+    const year = parseInt(parts[0], 10);
+    const month = parseInt(parts[1], 10) - 1; // month is 0-indexed
+    const day = parseInt(parts[2], 10);
+
+    const utcToday = Date.UTC(today.getFullYear(), today.getMonth(), today.getDate());
+    const utcStartDate = Date.UTC(year, month, day);
+
+    if (utcStartDate > utcToday) {
+        resultsDiv.innerHTML = '<p style="text-align: center;">Tarikh mula tidak boleh pada masa hadapan.</p>';
+        return;
+    }
+
+    const currentStreak = Math.floor((utcToday - utcStartDate) / (1000 * 60 * 60 * 24));
+
+    const milestones = [100, 200, 300, 400, 500];
+    const todayForCalc = new Date();
+    let resultsHTML = `<p style="text-align: center; font-weight: bold; margin-bottom: 15px;">Coretan semasa anda: ${currentStreak} hari</p>`;
+
     milestones.forEach(milestone => {
         if (currentStreak >= milestone) {
             resultsHTML += `<div class="streak-result-card achieved"><div class="milestone-number">${milestone}</div><div class="milestone-details"><span class="date">Tahniah! Anda telah melepasi</span><span class="days-remaining">${milestone} hari streak</span></div></div>`;
         } else {
             const daysNeeded = milestone - currentStreak;
-            const futureDate = new Date(today);
-            futureDate.setDate(today.getDate() + daysNeeded);
+            const futureDate = new Date(todayForCalc);
+            futureDate.setDate(todayForCalc.getDate() + daysNeeded);
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             const formattedDate = futureDate.toLocaleDateString('ms-MY', options);
             resultsHTML += `<div class="streak-result-card"><div class="milestone-number">${milestone}</div><div class="milestone-details"><span class="date">${formattedDate}</span><span class="days-remaining">${daysNeeded} hari lagi</span></div></div>`;
